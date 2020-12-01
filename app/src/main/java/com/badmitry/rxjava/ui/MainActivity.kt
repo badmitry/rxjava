@@ -78,8 +78,10 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
         }
         binding?.btnConvert?.setOnClickListener {
             val bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), fileUri)
-            val androidConverter = AndroidConverter(bmp)
-            presenter.convertImg(androidConverter)
+            bmp?.let{
+                val androidConverter = AndroidConverter(bmp)
+                presenter.convertImg(androidConverter)
+            }
         }
     }
 
